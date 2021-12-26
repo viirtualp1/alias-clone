@@ -1,0 +1,17 @@
+body { background: url('../img/bg.png'); }
+
+
+.title-game { 
+    text-align: center; 
+    font-size: 5rem; 
+    margin-top: 2rem;
+    text-shadow: 2px 3px 10px red;
+}
+
+.menu-buttons {
+    width: 150px;
+    margin: auto;
+    margin-top: 10rem;
+}
+
+.btn-menu { width: 150px; }

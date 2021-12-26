@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+
+* { font-family: 'PT Sans'; }
+
+body { background-color: black; }
+
+
+/* SETTINGS */
+.title-settings {
+    color: rgb(55, 211, 211);
+    margin: 0.5rem;
+}
+
+.text-settings { color: grey; }
+
+/* dictionary settings */
+.choose-dictionary {
+    margin-bottom: 2rem;
+}
+.dictionary { display: inline; }
+
+#icon-dictionary {
+    color: rgb(55, 211, 211);
+    font-size: 1.5rem;
+    margin-left: 2rem;
+    margin-right: 1rem;
+}
+
+#btn-choose-dictionary { 
+    margin-right: 1rem;
+    padding-top: 0.1rem;
+    float: right; 
+}
+
+.open-modal-choose-dictionary { cursor: pointer; }
+
+/* teams settings */
+.block-btn-choose-teams {
+    width: 180px;
+    margin: auto;
+}
+
+.team { margin-bottom: 1rem; }
+
+.team-elem { display: inline-block; }
+
+#team-avatar { 
+    width: 50px; 
+    height: 50px; 
+    cursor: pointer; 
+}
+
+#team-name { float: right; cursor: pointer; }
+
+#team-avatar-list { width: 50px; }
+
+#btn-delete-team { float: right; margin-right: 1rem; }
+
+/* round time settings */
+.round-time-elem { 
+    display: inline-block;
+    margin-left: 1rem;
+}
+
+#stopwatch-icon {
+    color: rgb(55, 211, 211);
+    font-size: 2rem;
+    margin-left: 1rem;
+}
+
+.time { 
+    float: right; 
+    margin-right: 1rem;
+    text-decoration: underline;
+}
+
+#btn-minus-thirty-sec { margin-left: 2rem; }
+
+.btn-time {
+    background-color: rgb(55, 211, 211);
+    margin-top: 1rem;
+    width: 70px;
+    height: 25px;
+    font-size: 0.7rem;
+    padding: 0;
+    font-weight: bold;
+}
+
+/* start game button */
+
+#btn-start-game {
+    width: 100%;
+    background-color: rgb(46, 46, 46);
+    color: #fff;
+}
+
+
+/* GAME */
+.swiper {
+    width: 600px;
+    height: 300px;
+}
+
+.swiper-slide { 
+    text-align: center;
+    margin-top: 5rem;
+    padding-top: 5rem;
+    color: #fff;
+    background: rgb(34, 34, 34);
+    font-size: 2rem;
+}

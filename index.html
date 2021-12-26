@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS file -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- Main CSS file -->
+    <link rel="stylesheet" href="css/main.css">
+    <title>Alias</title>
+</head>
+<body>
+    <div class="menu">
+        <h1 class="title-game">Alias</h1>
+
+        <div class="menu-buttons">
+            <button type="button" class="btn btn-success btn-menu" id="btn-play-game">Играть</button>
+            <button type="button" 
+                class="btn btn-danger mt-2 btn-menu" 
+                id="btn-rules-game" 
+                data-bs-toggle="modal" 
+                data-bs-target="#rules-modal">Правила</button>
+        </div>
+    </div>
+
+    <div class="modal fade" id="rules-modal" tabindex="-1" aria-labelledby="rules-modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="rules-modal-title">Правила игры</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <b>Что за ALIAS?</b> <br />
+                        ALIAS - игра разъяснения слов, в которой принимают участие команды, состоящие из двух человек. 
+
+                        В игре ALIAS надо суметь объяснить другими словами разгадываемое слово. 
+                        С помощью объяснения, синонимов, антонимов и намёков, достичь того, 
+                        чтобы компаньоны по игре отгадали как можно больше указанных в карточке слов.
+                    </p>
+                    <p>
+                        <b>Ход игры</b> <br />
+
+                        Сначала вам нужно зарегистрировать команды, потом настроить игру (время, словарь...) и начать играть! 
+                        Вам нужно объяснить слово, которое вы видите на экране. 
+                        Нельзя использовать <b>однокоренные слова</b>. 
+                        Вы также можете пропустить непонятное вам или вашему союзнику слово.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bootstrap JS file -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <!-- Main JS script -->
+    <script type="text/javascript">
+        // the user clicks on the "play" button and we transfer it to the corresponding html file  
+        document.getElementById('btn-play-game').addEventListener('click', () => location.href = "game.html");
+    </script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS file -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- Main CSS file -->
+    <link rel="stylesheet" href="css/game.css">
+    <!-- Vue File -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <!-- Font Awesome File -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <!-- Swiper -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    <!-- Title -->
+    <title>Alias - Игра</title>
+</head>
+<body>
+    <div id="app">
+        <div v-show="!isGame" class="settings-game">
+            <nav class="navbar navbar-light bg-danger">
+                <div class="container-fluid">
+                    <button 
+                        class="btn text-white" 
+                        onclick="location.href = 'index.html'" 
+                        id="btn-back-to-menu"><i class="fas fa-arrow-left"></i></button>
+    
+                    <a class="navbar-brand text-white">Новая игра</a>
+                </div>
+            </nav>
+
+            <div class="choose-dictionary">
+                <p class="title-settings small" id="choose-dictionary-title">Словарь</p>
+
+                <div class="open-modal-choose-dictionary" data-bs-toggle="modal" data-bs-target="#dictionary-modal">
+                    <i class="fas fa-book dictionary" id="icon-dictionary"></i>
+                    <h5 class="text-settings dictionary mb-0" id="current-dictionary">{{ gameSettings.dictionary }}</h5>
+
+                    <button class="btn dictionary" id="btn-choose-dictionary"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            
+                <div class="modal fade" id="dictionary-modal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content bg-dark">
+                            <div class="modal-body">
+                                <div class="card mb-3 bg-dark text-white" v-for="dictionary in dictionaries">
+                                    <div class="card-body">
+                                        <h5 class="card-title" id="modal-dictionary-name">{{ dictionary.name }}</h5>
+                                        <p class="card-text text-muted" id="modal-dictionary-desc">{{ dictionary.desc }}</p>
+
+                                        <span class="badge bg-danger">{{ dictionary.difficulty }}</span>
+                                        <span class="badge bg-primary">{{ dictionary.words.length }} слов</span>
+
+                                        <button class="d-block mt-3 btn btn-outline-success" @click="chooseDictionary(dictionary.name)">Выбрать</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>                  
+            </div>
+
+            <hr>
+
+            <div class="choose-teams">
+                <p class="title-settings small" id="choose-teams-title">Команды</p>
+
+                <div class="teams">
+                    <div class="teams-cards" v-for="team in gameSettings.teams">
+                        <div class="team bg-dark text-white">
+                            <img class="card-img team-elem" :src="team.url" id="team-avatar-list" alt="...">
+                            <h5 class="card-title team-elem mt-2" id="team-name-list">{{ team.name }}</h5>
+
+                            <button class="btn text-settings mt-1" id="btn-delete-team" @click="deleteTeam(team)"><i class="fas fa-times"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="block-btn-choose-teams">
+                    <button class="text-settings btn" id="btn-choose-teams" data-bs-toggle="modal" data-bs-target="#add-team-modal"><i class="fas fa-plus-circle"></i> Добавить команду</button>
+                </div>
+
+                <div class="modal fade" id="add-team-modal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content bg-dark text-white">
+                            <div class="modal-header">
+                                <button class="btn text-white" data-bs-dismiss="modal"><i class="fas fa-arrow-left"></i></button>
+                                <h5 class="modal-title" id="choose-team">Выберите команду</h5>
+                            </div>
+
+                            <div class="modal-body">
+                                <div class="team bg-dark text-white" v-for="team in teams">
+                                    <img class="card-img team-elem" @click="chooseTeam(team)" :src="team.url" id="team-avatar" alt="...">
+                                    <h5 class="card-title team-elem" @click="chooseTeam(team)" id="team-name">{{ team.name }}</h5>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <hr>
+
+            <div class="round-time">
+                <div class="round-time-elems">
+                    <p class="title-settings small">Время</p>
+
+                    <div class="round-time-elem">
+                        <i class="fas fa-stopwatch" id="stopwatch-icon"></i>
+                    </div>
+    
+                    <div class="round-time-elem" id="round-time-title">
+                        <h6 class="text-settings mb-0">Длина раунда</h6>
+                        <small class="text-settings">за которое надо отгадать слова</small>    
+                    </div>
+
+                    <div class="text-settings time">{{ gameSettings.roundTime }} сек</div>
+                </div>
+
+                <button class="btn btn-time" id="btn-minus-thirty-sec" @click="minusRoundTime">-30 СЕК</button>
+                <button class="btn btn-time" id="btn-plus-thirty-sec" @click="plusRoundTime">+30 СЕК</button>
+            </div>
+
+            <button class="btn fixed-bottom" id="btn-start-game" @click="startGame">Начать игру</button>
+        </div>
+
+        <div v-show="isGame" class="game">
+            <div class="swiper">
+                <div class="swiper-wrapper"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS file -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <!-- Swiper -->
+    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+    <!-- Main JS script -->
+    <script src="js/game.js"></script>
+</body>
+</html>
